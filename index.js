@@ -4,19 +4,19 @@ function Released (title, director, yearReleased) {
         this.yearReleased = yearReleased
 }
 function MovieRatingOver7 (title, director, yearReleased, rating) {
+        Released.call(this, title, director, yearReleased);
         this.rating = rating;
 }
-MovieRatingOver7.prototype = Object.create(Released.prototype)
+MovieRatingOver7.prototype = Object.create(Released.prototype);
+MovieRatingOver7.prototype.constructor = MovieRatingOver7;
 
 function ActionMovie(title, director, yearReleased, rating, budget, genre, explosions) {
-      Released.call(this, title, director, yearReleased);
       MovieRatingOver7.call(this, title, director, yearReleased, rating);
       this.budget = budget;
       this.genre = genre;
       this.explosions = explosions;
 }
 function ComedyMovie(title, director, yearReleased, rating, budget, genre, levelOfHumor) {
-      Released.call(this, title, director, yearReleased);
       MovieRatingOver7.call(this, title, director, yearReleased, rating);
       this.budget = budget;
       this.genre = genre;
@@ -34,8 +34,8 @@ function SciFiMovie(title, director, yearReleased, rating, budget, genre, futuri
       this.genre = genre;
       this.futuristicTech = futuristicTech;
 }
-Object.setPrototypeOf(ActionMovie.prototype, Released.prototype);
-Object.setPrototypeOf(ComedyMovie.prototype, Released.prototype);
+Object.setPrototypeOf(ActionMovie.prototype, MovieRatingOver7.prototype);
+Object.setPrototypeOf(ComedyMovie.prototype, MovieRatingOver7.prototype);
 Object.setPrototypeOf(HorrorMovie.prototype, Released.prototype);
 Object.setPrototypeOf(SciFiMovie.prototype, Released.prototype);
 
