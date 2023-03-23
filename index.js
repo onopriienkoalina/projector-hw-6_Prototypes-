@@ -8,40 +8,37 @@ function MovieRatingOver7 (title, director, yearReleased, rating) {
 }
 MovieRatingOver7.prototype = Object.create(Released.prototype)
 
-function ActionMovie(title, director, yearReleased, rating, budget, genre) {
+function ActionMovie(title, director, yearReleased, rating, budget, genre, explosions) {
       Released.call(this, title, director, yearReleased);
       MovieRatingOver7.call(this, title, director, yearReleased, rating);
       this.budget = budget;
       this.genre = genre;
+      this.explosions = explosions;
 }
-function ComedyMovie(title, director, yearReleased, rating, budget, genre) {
+function ComedyMovie(title, director, yearReleased, rating, budget, genre, levelOfHumor) {
       Released.call(this, title, director, yearReleased);
       MovieRatingOver7.call(this, title, director, yearReleased, rating);
       this.budget = budget;
       this.genre = genre;
+      this.levelOfHumor = levelOfHumor;
 }
-function HorrorMovie(title, director, yearReleased, rating, budget, genre) {
+function HorrorMovie(title, director, yearReleased, rating, budget, genre, jumpScares) {
        Released.call(this, title, director, yearReleased);
        this.budget = budget;
        this.genre = genre;
+       this.jumpScares = jumpScares;
 }
-function SciFiMovie(title, director, yearReleased, rating, budget, genre) {
+function SciFiMovie(title, director, yearReleased, rating, budget, genre, futuristicTech) {
       Released.call(this, title, director, yearReleased);
       this.budget = budget;
       this.genre = genre;
+      this.futuristicTech = futuristicTech;
 }
 Object.setPrototypeOf(ActionMovie.prototype, Released.prototype);
-ActionMovie.prototype.constructor = ActionMovie;
-ActionMovie.prototype.genre = "action";
 Object.setPrototypeOf(ComedyMovie.prototype, Released.prototype);
-ComedyMovie.prototype.constructor = ComedyMovie;
-ComedyMovie.prototype.genre = "comedy";
 Object.setPrototypeOf(HorrorMovie.prototype, Released.prototype);
-HorrorMovie.prototype.constructor = HorrorMovie;
-HorrorMovie.prototype.genre = "horror";
 Object.setPrototypeOf(SciFiMovie.prototype, Released.prototype);
-SciFiMovie.prototype.constructor = SciFiMovie;
-SciFiMovie.prototype.genre = "sci-fi";
+
 
 Released.prototype.release = function  (){
     console.log(`
@@ -59,31 +56,31 @@ ActionMovie.prototype.getRating = function () {
   return `${this.rating} rating over 7.`;
 }
 ActionMovie.prototype.getDetails = function () {
-  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}. Rating: ${this.rating} rating over 7.`;
+  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}. Rating: ${this.rating} rating over 7. Explosions: ${this.explosions}`;
 }
 ComedyMovie.prototype.getRating = function () {
   return `${this.rating} rating over 7.`;
 }
 ComedyMovie.prototype.getDetails = function () {
-  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}. Rating: ${this.rating} rating over 7.`;
+  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}. Rating: ${this.rating} rating over 7. Level of humor: ${this.levelOfHumor}`;
 }
 HorrorMovie.prototype.getTitle = function () {
     return this.title;
 }
 HorrorMovie.prototype.getDetails = function () {
-  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}.`;
+  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}. Scary moments: ${this.jumpScares} `;
 }
 SciFiMovie.prototype.getTitle = function () {
     return this.title;
 }
 SciFiMovie.prototype.getDetails = function () {
-  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}.`;
+  return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.genre}. Technologies that were used: ${this.futuristicTech}`;
 }
 
-let action = new ActionMovie("Everything Everywhere All at Once", "Daniel Kwan", 2022, 7.8, 25, "Action");
-let comedy = new ComedyMovie("Triangle of Sadness", "Ruben Östlund", 2022, 7, 15, "Comedy");
-let horror = new HorrorMovie("The Amityville Horror", "Andrew Douglas", 2005, 6, 18, "Horror");
-let sciFi = new SciFiMovie("Space Samurai: Oasis", "Mark Maine", 2014, 6, 10, "Sci-Fi");
+let action = new ActionMovie("Everything Everywhere All at Once", "Daniel Kwan", 2022, 7.8, 25, "Action", 10);
+let comedy = new ComedyMovie("Triangle of Sadness", "Ruben Östlund", 2022, 7, 15, "Comedy", 29);
+let horror = new HorrorMovie("The Amityville Horror", "Andrew Douglas", 2005, 6, 18, "Horror", 5);
+let sciFi = new SciFiMovie("Space Samurai: Oasis", "Mark Maine", 2014, 6, 10, "Sci-Fi", ["wormhole travel", "artificial intelligence"]);
 
 console.log(action.getDetails()); 
 console.log(comedy.getDetails());
